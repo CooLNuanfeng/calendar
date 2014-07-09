@@ -9,9 +9,50 @@
 <script src="js/jquery1.7.js"></script>
 <script src="js/calendar.js"></script>
 <script>
+$(function(){
+	
+	$('#c1').calendar({
+		id :'c1'
+	});
+	
+	$('#c2').calendar({
+		id :'c2'
+	})
+	
+})
 </script>
 </head>
 
 <body>
+<h1>calendar</h1>
+<input type="text" id="c1" value="" style="margin:50px; height:30px">
+
+<input type="text" id="c2" value="" style="margin:50px; height:30px">
+<!--<div class="calendar">
+	<div class="calendar_title">
+    	<div class="prev_year">&lt;&lt;</div>
+        <div class="prev_month">&lt;</div>
+        <div class="data_now">2014-07-09</div>
+        <div class="next_month">&gt;</div>
+        <div class="next_year">&gt;&gt;</div>
+    </div>
+    <div class="calendar_box">
+    	<div class="calendar_table">
+        	<table cellpadding="0" cellspacing="0">
+                <thead>
+                    <td>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td>六</td>
+                </thead>
+                <tbody>
+                    <tr><td class="old">29</td><td class="old">30</td><td class="old">1</td><td class="old">2</td><td class="old">3</td><td class="old">4</td><td class="old">5</td></tr>
+                    <tr><td class="old">7</td><td class="old">8</td><td class="today">9</td><td>10</td><td>11</td><td>12</td><td>13</td></tr>
+                    <tr><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td></tr>
+                    <tr><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td></tr>
+                    <tr><td>28</td><td>29</td><td>30</td><td>31</td><td>1</td><td>2</td><td>3</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="calendar_bg">7</div>
+    </div>
+</div>-->
 </body>
 </html>
