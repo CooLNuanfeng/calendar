@@ -11,13 +11,10 @@
 <script>
 $(function(){
 	
-	$('#c1').calendar({
-		id :'c1'
+	$.calendar({
+		classCalendar :'nf_calendar'
 	});
-	
-	$('#c2').calendar({
-		id :'c2'
-	})
+
 	
 })
 </script>
@@ -25,9 +22,9 @@ $(function(){
 
 <body>
 <h1>calendar</h1>
-<input type="text" id="c1" value="" style="margin:50px; height:30px">
+<input type="text" id="c1" class="nf_calendar" value="" style="margin:50px; height:30px">
 
-<input type="text" id="c2" value="" style="margin:50px; height:30px">
+<input type="text" id="c2" class="nf_calendar" value="" style="margin:50px; height:30px">
 <!--<div class="calendar">
 	<div class="calendar_title">
     	<div class="prev_year">&lt;&lt;</div>

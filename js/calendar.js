@@ -14,7 +14,7 @@ function Calendar(){
 	this.$calendar = null
 	
 	this.settings ={
-		id :''
+		classCalendar :'nf_calendar'
 	}
 	
 }
@@ -27,28 +27,34 @@ Calendar.prototype = {
 	
 		$.extend(this.settings,options);
 		
-		this.template();
 		this.pos();
-		this.date();
 	
 	},
 	
 	pos : function(){
 		
 		var This = this;
-		var $data = $('#'+this.settings.id);
+		var $data = $('.'+this.settings.classCalendar);
 		
-		this.$calendar.css({
-			top : $data.offset().top + $data.height()+5,
-			left : $data.offset().left
+		$data.each(function(i){
+			$(this).on('focus',function(){
+				
+				This.template();
+				This.date();
+				
+				This.$calendar.css({
+					top : $data.eq(i).offset().top + $data.eq(i).height()+5,
+					left: $data.eq(i).offset().left
+				})
+			});
 		})
 		
-		$data.on('focus',function(){
-			This.$calendar.show();
-		});
-		$data.on('blur',function(){
-			This.$calendar.hide();
+		$data.each(function(i){
+			$(this).on('blur',function(){
+				This.$calendar.remove();
+			});
 		})
+		
 		
 	},
 	
@@ -80,7 +86,7 @@ Calendar.prototype = {
 	
 	date : function(){
 		this.$calendar.find('.calendar_table td').click(function(){
-			
+			alert('a')
 		})
 	}
 	
