@@ -51,7 +51,9 @@ Calendar.prototype = {
 		
 		$data.each(function(i){
 			$(this).on('blur',function(){
-				This.$calendar.remove();
+				setTimeout(function(){
+					This.$calendar.remove();
+				},100)
 			});
 		})
 		
@@ -86,7 +88,7 @@ Calendar.prototype = {
 	
 	date : function(){
 		this.$calendar.find('.calendar_table td').click(function(){
-			alert('a')
+			console.log($(this).html())
 		})
 	}
 	
