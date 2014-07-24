@@ -34,29 +34,25 @@ Calendar.prototype = {
 	pos : function(){
 		
 		var This = this;
-		var $data = $('.'+this.settings.classCalendar);
-		
-		$data.each(function(i){
-			$(this).on('focus',function(){
-				
-				This.template();
-				This.date();
-				
-				This.$calendar.css({
-					top : $data.eq(i).offset().top + $data.eq(i).height()+5,
-					left: $data.eq(i).offset().left
-				})
+		var $obj = $('.'+this.settings.classCalendar);
+
+		$obj.on('click',function(e){
+			
+			if(This.$calendar){
+				This.$calendar.remove();
+			}
+			This.template();
+			This.date();
+			This.$calendar.css({
+				top : $(this).offset().top + $(this).height()+5,
+				left: $(this).offset().left
 			});
-		})
+			e.stopPropagation();
+		});
 		
-		$data.each(function(i){
-			$(this).on('blur',function(){
-				setTimeout(function(){
-					This.$calendar.remove();
-				},100)
-			});
+		$(document).click(function(){
+			This.$calendar.remove();
 		})
-		
 		
 	},
 	
