@@ -1,7 +1,7 @@
 
 文档目录结构
 
-> ├── css
+├── css
 │   ├── calendar.css
 │   ├── common.css
 │   └── font-awesome.min.css
