@@ -1,7 +1,7 @@
 
-文档的目录结构
-.
-├── css
+文档目录结构
+
+> ├── css
 │   ├── calendar.css
 │   ├── common.css
 │   └── font-awesome.min.css
@@ -17,6 +17,4 @@
 │   └── jquery1.7.js
 └── README.md
 
-3 directories, 12 files
-
-这是一个关于日历的组件
+这是一个日历组件
