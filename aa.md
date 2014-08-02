@@ -38,9 +38,9 @@ this is two block
 2. red
 3. green
 
+```
 .
 ├── css
-
 │   ├── calendar.css
 │   ├── common.css
 │   └── font-awesome.min.css
@@ -55,7 +55,7 @@ this is two block
 │   ├── calendar.js
 │   └── jquery1.7.js
 └── README.md
-
+```
 
 <http://github.com/CooLNuafeng>
 
@@ -73,6 +73,7 @@ sit amet, consectetuer adipiscing elit.
 
 
 文档的目录结构
+```
 .
 ├── css
 │   ├── calendar.css
@@ -89,6 +90,7 @@ sit amet, consectetuer adipiscing elit.
 │   ├── calendar.js
 │   └── jquery1.7.js
 └── README.md
+```
 
 3 directories, 12 files
 
