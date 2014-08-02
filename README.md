@@ -16,5 +16,8 @@
 │   ├── calendar.js
 │   └── jquery1.7.js
 └── README.md
+
+3 directories, 12 files
+
 ```
 这是一个日历组件
