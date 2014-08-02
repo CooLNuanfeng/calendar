@@ -17,7 +17,7 @@ function Calendar(){
 	this.month = null;
 	this.date = null;
 	this.$obj = null;
-	this.indexVal = 0;  // 确保点击对应
+	//this.indexVal = 0;  // 确保点击对应
 	
 	this.settings = {
 		classCalendar :'nf_calendar'
@@ -30,10 +30,18 @@ Calendar.prototype = {
 	constructor : Calendar,
 	
 	init : function(options){
-	
+		
+		var This = this;
+		
 		$.extend(this.settings,options);
 		
 		this.pos();
+		
+		
+		$(document).click(function(){
+			This.$calendar.remove();
+		})
+		
 		
 	},
 	
@@ -42,28 +50,50 @@ Calendar.prototype = {
 		
 		var This = this;
 		this.$obj = $('.'+this.settings.classCalendar);
-
+		
 		this.$obj.on('click',function(ev){
-			
-			This.indexVal = $(this).index()-1;
-			//console.log($(this).index())
 			
 			if(This.$calendar){
 				This.$calendar.remove();
 			}
-			This.showCalendar();
-
+			
+			//判断一开始是否有日期
+			if($(this).val() != ''){
+				
+				var dateStr = $(this).val();
+				var arr = dateStr.split('-');
+				//console.log(arr)
+				This.year = toSingle(arr[0]);
+				This.month = toSingle(arr[1]);
+				This.date = toSingle(arr[2]);
+				This.date = This.oDate.getDate();
+				
+				var monthDays = new Date(This.year, This.month, 0).getDate();
+					This.oDate.setFullYear(This.year, This.month-1,1);
+				
+				var day = This.oDate.getDay();
+				This.oDate.setDate(This.date);
+				
+				
+				This.template(This.year,This.month,This.date,monthDays,day);
+				
+			}else{
+				
+				This.showCalendar();
+				
+			}
+			//console.log($(this).index())
+			//确保能与之一一对应
+			$("input[data-input='date']").attr('data-input','');
+			$(this).attr('data-input','date')
+			
 			This.$calendar.css({
 				top : $(this).offset().top + $(this).height()+5,
 				left: $(this).offset().left
 			});
-			
+				
 			ev.stopPropagation();
 		});
-		
-		$(document).click(function(){
-			This.$calendar.remove();
-		})
 		
 	},
 	
@@ -217,12 +247,14 @@ Calendar.prototype = {
 	//生成选择日期
 	inputDate : function(){
 		var This = this;
+		
+		//确保能与之一一对应
 		this.$calendar.find('.calendar_table td').click(function(ev){
-			This.$obj.eq(This.indexVal).val( This.year+'-'+toDouble(This.month)+'-'+toDouble($(this).html()) )
+				$("input[data-input='date']").val( This.year+'-'+toDouble(This.month)+'-'+toDouble($(this).html()) )
 		});
 		
 		this.$calendar.find('.data_now').click(function(){
-			This.$obj.eq(This.indexVal).val($(this).html())
+			$("input[data-input='date']").val( $(this).html() )
 		})
 	},
 	
@@ -252,4 +284,11 @@ function toDouble(num){
 		return num;
 	}
 			
+}
+function toSingle(num){
+	if(num<10){
+		return parseInt(num);
+	}else{
+		return num;
+	}
 }
