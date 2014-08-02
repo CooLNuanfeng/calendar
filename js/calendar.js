@@ -10,12 +10,14 @@ $(function(){
 })
 
 function Calendar(){
-	
+
 	this.$calendar = null;
 	this.oDate = null;
 	this.year = null;
 	this.month = null;
 	this.date = null;
+	this.$obj = null;
+	this.indexVal = 0;  // 确保点击对应
 	
 	this.settings = {
 		classCalendar :'nf_calendar'
@@ -35,12 +37,16 @@ Calendar.prototype = {
 		
 	},
 	
+	//显示位置
 	pos : function(){
 		
 		var This = this;
-		var $obj = $('.'+this.settings.classCalendar);
+		this.$obj = $('.'+this.settings.classCalendar);
 
-		$obj.on('click',function(e){
+		this.$obj.on('click',function(ev){
+			
+			This.indexVal = $(this).index()-1;
+			//console.log($(this).index())
 			
 			if(This.$calendar){
 				This.$calendar.remove();
@@ -51,7 +57,8 @@ Calendar.prototype = {
 				top : $(this).offset().top + $(this).height()+5,
 				left: $(this).offset().left
 			});
-			e.stopPropagation();
+			
+			ev.stopPropagation();
 		});
 		
 		$(document).click(function(){
@@ -60,6 +67,7 @@ Calendar.prototype = {
 		
 	},
 	
+	//日历共用生成模板
 	template : function(year,month,date,monthDays,week){
 		
 		var iNow = 1;
@@ -91,9 +99,12 @@ Calendar.prototype = {
 		$('body').append(this.$calendar);
 		
 		this.changeMonth();
+		this.changeYear();
+		this.inputDate();
 		
 	},
 	
+	//显示日历
 	showCalendar : function(){
 		
 		this.$calendar = $('<div class="calendar"></div>');
@@ -112,6 +123,7 @@ Calendar.prototype = {
 		
 	},
 	
+	//改变月份
 	changeMonth : function(){
 		
 		var This = this;
@@ -174,13 +186,47 @@ Calendar.prototype = {
 		
 	},
 	
-	date : function(){
-		this.$calendar.find('.calendar_table td').click(function(){
-			console.log($(this).html())
+	//改变年份
+	changeYear : function(){
+		var This = this;
+		this.$calendar.find('.prev_year').on('click',function(ev){
+			This.year--;
+			var monthDays = new Date(This.year, This.month, 0).getDate();
+			This.oDate.setFullYear(This.year, This.month-1,1);
+			
+			var day = This.oDate.getDay();
+			This.oDate.setDate(This.date);
+			This.template(This.year,This.month,This.date,monthDays,day);
+			ev.stopPropagation();
+		});
+		
+		this.$calendar.find('.next_year').on('click',function(ev){
+			This.year++;
+			var monthDays = new Date(This.year, This.month, 0).getDate();
+			This.oDate.setFullYear(This.year, This.month-1,1);
+			
+			var day = This.oDate.getDay();
+			This.oDate.setDate(This.date);
+			This.template(This.year,This.month,This.date,monthDays,day);
+			
+			ev.stopPropagation();
+		});
+		
+	},
+	
+	//生成选择日期
+	inputDate : function(){
+		var This = this;
+		this.$calendar.find('.calendar_table td').click(function(ev){
+			This.$obj.eq(This.indexVal).val( This.year+'-'+toDouble(This.month)+'-'+toDouble($(this).html()) )
+		});
+		
+		this.$calendar.find('.data_now').click(function(){
+			This.$obj.eq(This.indexVal).val($(this).html())
 		})
 	},
 	
-	
+	//多余部分的td隐藏
 	hidenTd : function(){
 		var nullVal = false;
 		for(var i=35; i<42; i++){
@@ -196,6 +242,7 @@ Calendar.prototype = {
 	
 }
 
+//统一成两位数
 function toDouble(num){
 	
 	if(num<10){
