@@ -1,6 +1,6 @@
 
 文档目录结构
-
+```
 ├── css
 │   ├── calendar.css
 │   ├── common.css
@@ -16,5 +16,5 @@
 │   ├── calendar.js
 │   └── jquery1.7.js
 └── README.md
-
+```
 这是一个日历组件
