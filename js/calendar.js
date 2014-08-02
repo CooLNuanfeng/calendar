@@ -69,13 +69,11 @@ Calendar.prototype = {
 				This.year = toSingle(arr[0]);
 				This.month = toSingle(arr[1]);
 				This.date = toSingle(arr[2]);
-				This.date = This.oDate.getDate();
 				
-				var monthDays = new Date(This.year, This.month, 0).getDate();
+				var monthDays = new Date(This.year, This.month, 0).getDate();   //获取当月天数
 					This.oDate.setFullYear(This.year, This.month-1,1);
 				
 				var day = This.oDate.getDay();
-				This.oDate.setDate(This.date);
 				
 				
 				This.template(This.year,This.month,This.date,monthDays,day);
