@@ -9,7 +9,7 @@
 .calendar_box table tr:nth-of-type(even){background:rgba(214,245,255,0.3);}
 .calendar_box table td{width:40px; height:30px; text-align:center; vertical-align:middle; font-family:"微软雅黑"; font-size:13px; cursor:pointer}
 .calendar_box table td.old{color:#999;}
-.calendar_box table td.today{color:#F36; font-size:16px; font-weight:bold}
+.calendar_box table td.today{color:#F36; font-size:16px; font-weight:bold;}
 .calendar_box table thead td{height:35px; background:#59c2e6; color:#fff;}
 .calendar_box table td:hover{background:#59c2e6; color:#fff}
 .calendar_bg{width:280px; height:150px; position:absolute; bottom:0; left:0; line-height:150px; font-size:150px; text-align:center; color:#59c2e6; opacity:0.3; z-index:1;}
