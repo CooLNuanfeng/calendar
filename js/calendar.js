@@ -59,7 +59,7 @@ Calendar.prototype = {
 			
 			//判断一开始是否有日期
 			var strInputVal = $(this).val();
-			var re = /^\d{4}-\d{2}-\d{2}/
+			var re = /^\d{4}-\d{2}-\d{2}/;
 			
 			if(strInputVal != '' && re.test(strInputVal)){
 				
